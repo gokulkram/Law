@@ -1,0 +1,13 @@
+# Tooling / local artifacts
+.claude/
+.playwright-mcp/
+
+# Screenshots & scratch images from testing
+*.png
+!assets/**/*.png
+!images/**/*.png
+
+# OS / editor cruft
+Thumbs.db
+.DS_Store
+*.log

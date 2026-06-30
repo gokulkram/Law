@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>West Stone Law — Personal Injury &amp; Wrongful Death Attorneys</title>
+  <meta name="description" content="West Stone Law is a personal injury law firm focused on wrongful death cases. Compassionate, aggressive representation. Free consultation — no fee unless we win." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ===== TOP BAR ===== -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar__left">
+        <span>&#9742; <a href="tel:+18005550100">(800) 555-0100</a></span>
+        <span>&#9993; <a href="mailto:intake@weststonelaw.com">intake@weststonelaw.com</a></span>
+        <span>&#128205; 6 offices serving the region</span>
+      </div>
+      <a class="topbar__cta" href="#contact">Free Case Review &mdash; 24/7</a>
+    </div>
+  </div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="container nav">
+      <a class="nav__logo" href="index.html" aria-label="West Stone Law home">
+        <img src="assets/logo.svg" alt="West Stone Law" />
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="index.html" class="active">Home</a>
+        <a href="practice-areas.html">Practice Areas</a>
+        <a href="wrongful-death.html">Wrongful Death</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--gold" href="#contact">Free Consultation</a>
+      </div>
+      <button class="nav__toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- ===== HERO + CONTACT FORM (top of page) ===== -->
+  <section class="hero" id="contact">
+    <div class="hero__bg" role="img" aria-label="Diverse group of people"></div>
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <span class="hero__badge">&#9733; Trusted personal injury &amp; wrongful death advocates</span>
+        <h1>When the worst happens, <span class="accent">you deserve answers</span> &mdash; and justice.</h1>
+        <p class="hero__sub">West Stone Law stands with families and the injured after life-changing harm. We pursue full accountability for wrongful death and serious injury &mdash; with compassion, and without compromise.</p>
+        <div class="hero__actions">
+          <a class="btn btn--gold" href="#lead-form">Get a Free Case Review</a>
+          <a class="btn btn--ghost" href="tel:+18005550100">&#9742; Call (800) 555-0100</a>
+        </div>
+        <!-- <div class="hero__trust">
+          <div><div class="num">$500M+</div><div class="lbl">Recovered for<br>our clients</div></div>
+          <div><div class="num">35+ yrs</div><div class="lbl">Combined trial<br>experience</div></div>
+        </div> -->
+      </div>
+
+      <!-- LEAD CONTACT FORM -->
+      <div class="lead-card" id="lead-form">
+        <h3>Free, confidential case review</h3>
+        <p class="muted">Tell us what happened. We respond within one hour, 24/7.</p>
+        <form name="lead-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html" data-validate novalidate>
+          <input type="hidden" name="form-name" value="lead-contact" />
+          <p hidden aria-hidden="true"><label>Don&rsquo;t fill this out if you&rsquo;re human: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+          <div class="form-success" role="status">Thank you &mdash; your request has been received. An attorney will contact you shortly.</div>
+          <div class="form-error" role="alert">Sorry, something went wrong sending your message. Please call us at (800)&nbsp;555-0100.</div>
+          <div class="grid-2">
+            <div class="field">
+              <label for="f-name">Full name *</label>
+              <input id="f-name" name="name" type="text" required autocomplete="name" />
+              <span class="err">Please enter your name.</span>
+            </div>
+            <div class="field">
+              <label for="f-phone">Phone *</label>
+              <input id="f-phone" name="phone" type="tel" required autocomplete="tel" />
+              <span class="err">Enter a valid phone number.</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-email">Email *</label>
+            <input id="f-email" name="email" type="email" required autocomplete="email" />
+            <span class="err">Enter a valid email address.</span>
+          </div>
+          <div class="field">
+            <label for="f-type">Type of case *</label>
+            <select id="f-type" name="case_type" required>
+              <option value="">Select one&hellip;</option>
+              <option>Wrongful death</option>
+              <option>Car / truck accident</option>
+              <option>Medical malpractice</option>
+              <option>Workplace injury</option>
+              <option>Slip &amp; fall</option>
+              <option>Other personal injury</option>
+            </select>
+            <span class="err">Please choose a case type.</span>
+          </div>
+          <button class="btn btn--gold btn--block" type="submit">Request My Free Review &rarr;</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRUST BAR ===== -->
+  <div class="trustbar">
+    <div class="container">
+      <div class="item"><strong>2,000+</strong><span>Families helped</span></div>
+      <div class="item"><strong>98%</strong><span>Case success rate</span></div>
+      <div class="item"><strong>35+ yrs</strong><span>Combined trial experience</span></div>
+      <div class="item"><strong>24/7</strong><span>Availability</span></div>
+    </div>
+  </div>
+
+  <!-- ===== WHAT WE DO — TWO PILLARS (Personal Injury / Wrongful Death) ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">What We Do</span>
+        <h2>Personal injury is all we do &mdash; and we do it well</h2>
+        <p class="lead" style="margin:14px auto 0;">From catastrophic accidents to the loss of a loved one, we handle the legal fight so you can focus on healing. Every case is led by a senior attorney.</p>
+      </div>
+      <div class="pillars">
+
+        <!-- PERSONAL INJURY -->
+        <article class="pillar reveal">
+          <div class="pillar__head">
+            <div class="ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <div>
+              <h3>Personal Injury</h3>
+              <p class="pillar__sub">Serious-injury cases of every kind. We take on insurers and corporations to recover everything you&rsquo;re owed.</p>
+            </div>
+          </div>
+          <ul class="pillar__list">
+            <li><a href="practice-areas.html"><span class="pa-label"><svg class="pa-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 13l2-5a3 3 0 0 1 2.8-2h8.4A3 3 0 0 1 19 8l2 5"/><path d="M5 17h14M6 13h12"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></svg>Car &amp; Truck Accidents</span><svg class="pa-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="practice-areas.html"><span class="pa-label"><svg class="pa-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 8h14M7 8l-2 6a3 3 0 0 0 6 0L9 8M17 8l-2 6a3 3 0 0 0 6 0l-2-6"/></svg>Medical Malpractice</span><svg class="pa-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="practice-areas.html"><span class="pa-label"><svg class="pa-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2h4l1 4h-6zM9 6h6l1 14H8z"/><path d="M12 10v6"/></svg>Workplace Injuries</span><svg class="pa-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="practice-areas.html"><span class="pa-label"><svg class="pa-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20l6-6M9 11l4-4 4 4-4 4zM14 4l6 6"/></svg>Slip &amp; Fall</span><svg class="pa-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="practice-areas.html"><span class="pa-label"><svg class="pa-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg>Catastrophic Injury</span><svg class="pa-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+          </ul>
+          <a class="btn btn--outline" href="practice-areas.html">See all practice areas &rarr;</a>
+        </article>
+
+        <!-- WRONGFUL DEATH -->
+        <article class="pillar pillar--focus reveal">
+          <div class="pillar__head">
+            <div class="ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg>
+            </div>
+            <div>
+              <span class="eyebrow eyebrow--light" style="margin-bottom:6px;">Our Focus</span>
+              <h3>Wrongful Death</h3>
+              <p class="pillar__sub">When negligence takes a loved one, we protect your family&rsquo;s rights from day one.</p>
+            </div>
+          </div>
+          <ul class="checklist">
+            <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg><span><strong>We investigate fully</strong> &mdash; preserving evidence before it disappears.</span></li>
+            <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg><span><strong>We value the whole loss</strong> &mdash; income, support, guidance, and companionship.</span></li>
+            <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg><span><strong>We handle everything</strong> &mdash; so your family can focus on each other.</span></li>
+          </ul>
+          <div class="pillar__promise"><strong>You don&rsquo;t pay</strong> unless we win your case.</div>
+          <a class="btn btn--gold" href="wrongful-death.html">Understand your rights &rarr;</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">How It Works</span>
+        <h2>A clear path forward, from day one</h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><div class="n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><span class="step-num">1</span></div><h3>Free consultation</h3><p>Tell us what happened. We listen, answer your questions, and explain your options &mdash; at no cost.</p></div>
+        <div class="step reveal"><div class="n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span class="step-num">2</span></div><h3>Investigation</h3><p>We gather evidence, consult experts, and build the strongest possible case on your behalf.</p></div>
+        <div class="step reveal"><div class="n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg><span class="step-num">3</span></div><h3>Negotiation</h3><p>We demand full and fair compensation &mdash; and we&rsquo;re not afraid to reject a lowball offer.</p></div>
+        <div class="step reveal"><div class="n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14.5 12.5-8 8a2.119 2.119 0 1 1-3-3l8-8"/><path d="m16 16 6-6"/><path d="m8 8 6-6"/><path d="m9 7 8 8"/><path d="m21 11-8-8"/></svg><span class="step-num">4</span></div><h3>Trial, if needed</h3><p>If insurers won&rsquo;t be fair, our trial attorneys are ready to take your case to a jury.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow eyebrow--light">Client Stories</span>
+        <h2>Families we&rsquo;ve stood beside</h2>
+      </div>
+      <div class="tslider reveal">
+        <span class="tquote-mark" aria-hidden="true">&ldquo;</span>
+        <div class="tslide active">
+          <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="quote">&ldquo;After we lost my husband, I couldn&rsquo;t think straight. West Stone Law handled everything with such kindness and fought harder than I ever expected. They gave my children a future.&rdquo;</p>
+          <div class="tauthor">
+            <span class="tavatar" aria-hidden="true">MT</span>
+            <div class="tauthor__txt">
+              <div class="who">Maria T.</div>
+              <div class="case">Wrongful death &mdash; trucking collision</div>
+            </div>
+          </div>
+        </div>
+        <div class="tslide">
+          <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="quote">&ldquo;The insurance company offered almost nothing. My attorney at West Stone refused to settle and won a verdict that covered my surgeries and lost income. I&rsquo;ll never be able to thank them enough.&rdquo;</p>
+          <div class="tauthor">
+            <span class="tavatar" aria-hidden="true">JR</span>
+            <div class="tauthor__txt">
+              <div class="who">James R.</div>
+              <div class="case">Catastrophic injury &mdash; auto accident</div>
+            </div>
+          </div>
+        </div>
+        <div class="tslide">
+          <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="quote">&ldquo;They explained every step in plain language and always returned my calls. I never felt like just a case number. Truly compassionate, truly relentless.&rdquo;</p>
+          <div class="tauthor">
+            <span class="tavatar" aria-hidden="true">DC</span>
+            <div class="tauthor__txt">
+              <div class="who">Denise &amp; Carl W.</div>
+              <div class="case">Medical malpractice</div>
+            </div>
+          </div>
+        </div>
+        <div class="tdots" role="tablist" aria-label="Testimonial navigation"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LOCATIONS ===== -->
+  <section class="section bg-paper2">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Visit Us</span>
+        <h2>Six offices, one standard of care</h2>
+        <p class="lead" style="margin:14px auto 0;">Can&rsquo;t come to us? We make home and hospital visits. Just call.</p>
+      </div>
+      <div class="locations">
+        <div class="loc reveal">
+          <div class="loc__media">
+            <img src="https://images.unsplash.com/photo-1444723121867-7a241cacace9?auto=format&fit=crop&w=800&q=70" alt="Downtown skyline" loading="lazy" />
+            <span class="loc__label">Downtown</span>
+          </div>
+          <div class="loc__body">
+            <span class="loc__eyebrow">Main Office</span>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> 1200 Market Street, Suite 400<br>Metro City, ST 00001</p>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> <a href="tel:+18005550100">(800) 555-0100</a></p>
+          </div>
+        </div>
+        <div class="loc reveal">
+          <div class="loc__media">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=70" alt="Westside office buildings" loading="lazy" />
+            <span class="loc__label">Westside</span>
+          </div>
+          <div class="loc__body">
+            <span class="loc__eyebrow">Branch Office</span>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> 580 Riverside Drive, Suite 110<br>Westgate, ST 00002</p>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> <a href="tel:+18005550120">(800) 555-0120</a></p>
+          </div>
+        </div>
+        <div class="loc reveal">
+          <div class="loc__media">
+            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&q=70" alt="North County city street" loading="lazy" />
+            <span class="loc__label">North County</span>
+          </div>
+          <div class="loc__body">
+            <span class="loc__eyebrow">Branch Office</span>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> 95 Lakeview Blvd, Suite 230<br>Northpoint, ST 00003</p>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> <a href="tel:+18005550140">(800) 555-0140</a></p>
+          </div>
+        </div>
+        <div class="loc reveal">
+          <div class="loc__media">
+            <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=800&q=70" alt="Uptown skyline" loading="lazy" />
+            <span class="loc__label">Uptown</span>
+          </div>
+          <div class="loc__body">
+            <span class="loc__eyebrow">Branch Office</span>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> 410 Summit Avenue, Suite 300<br>Hightower, ST 00004</p>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> <a href="tel:+18005550160">(800) 555-0160</a></p>
+          </div>
+        </div>
+        <div class="loc reveal">
+          <div class="loc__media">
+            <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=800&q=70" alt="Bayside waterfront skyline" loading="lazy" />
+            <span class="loc__label">Bayside</span>
+          </div>
+          <div class="loc__body">
+            <span class="loc__eyebrow">Branch Office</span>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> 22 Harbor View Road, Suite 90<br>Baypoint, ST 00005</p>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> <a href="tel:+18005550180">(800) 555-0180</a></p>
+          </div>
+        </div>
+        <div class="loc reveal">
+          <div class="loc__media">
+            <img src="https://images.unsplash.com/photo-1518391846015-55a9cc003b25?auto=format&fit=crop&w=800&q=70" alt="Riverside bridge and skyline at night" loading="lazy" />
+            <span class="loc__label">Riverside</span>
+          </div>
+          <div class="loc__body">
+            <span class="loc__eyebrow">Branch Office</span>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> 760 Bridgewater Lane, Suite 210<br>Rivermont, ST 00006</p>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> <a href="tel:+18005550200">(800) 555-0200</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA BAND ===== -->
+  <section class="section ctaband">
+    <div class="container reveal">
+      <span class="eyebrow eyebrow--light">No Fee Unless We Win</span>
+      <h2>Talk to a personal injury attorney today</h2>
+      <p>The consultation is free, the call is confidential, and there&rsquo;s no obligation. The sooner you reach out, the sooner we can protect your rights.</p>
+      <div class="actions">
+        <a class="btn btn--gold" href="#lead-form">Start My Free Case Review</a>
+        <a class="btn btn--ghost" href="tel:+18005550100">&#9742; (800) 555-0100</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <h4>West Stone Law</h4>
+          <p>A personal injury law firm dedicated to families and the seriously injured &mdash; with a focus on wrongful death claims. Compassionate counsel, relentless advocacy.</p>
+        </div>
+        <div>
+          <h4>Practice Areas</h4>
+          <ul>
+            <li><a href="wrongful-death.html">Wrongful Death</a></li>
+            <li><a href="practice-areas.html">Car &amp; Truck Accidents</a></li>
+            <li><a href="practice-areas.html">Medical Malpractice</a></li>
+            <li><a href="practice-areas.html">Catastrophic Injury</a></li>
+            <li><a href="practice-areas.html">Workplace Injuries</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Firm</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="index.html#testimonials">Testimonials</a></li>
+            <li><a href="contact.html">Locations</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get Help Now</h4>
+          <p>Available 24/7 for new matters.</p>
+          <p style="margin:6px 0;"><a href="tel:+18005550100" style="color:var(--gold-300);font-weight:700;font-size:1.1rem;">(800) 555-0100</a></p>
+          <p><a href="mailto:intake@weststonelaw.com">intake@weststonelaw.com</a></p>
+          <div class="footer__social" style="margin-top:16px;">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="X">x</a>
+          </div>
+        </div>
+      </div>
+      <div class="disclaimer">
+        Attorney Advertising. The information on this website is for general informational purposes only and is not legal advice. Viewing this site or contacting the firm does not create an attorney-client relationship. Prior results do not guarantee a similar outcome. Figures shown are illustrative.
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; <span id="year">2026</span> West Stone Law. All rights reserved.</span>
+        <span><a href="#">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="#">Disclaimer</a> &nbsp;&middot;&nbsp; <a href="#">Site Map</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/a11y.js"></script>
+</body>
+</html>

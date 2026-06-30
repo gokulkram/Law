@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact &amp; Locations | West Stone Law</title>
+  <meta name="description" content="Contact West Stone Law for a free consultation. Six offices, available 24/7. Call (800) 555-0100 or request a free case review online." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar__left">
+        <span>&#9742; <a href="tel:+18005550100">(800) 555-0100</a></span>
+        <span>&#9993; <a href="mailto:intake@weststonelaw.com">intake@weststonelaw.com</a></span>
+        <span>&#128205; 6 offices serving the region</span>
+      </div>
+      <a class="topbar__cta" href="#contact-form">Free Case Review &mdash; 24/7</a>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="container nav">
+      <a class="nav__logo" href="index.html" aria-label="West Stone Law home"><img src="assets/logo.svg" alt="West Stone Law" /></a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="practice-areas.html">Practice Areas</a>
+        <a href="wrongful-death.html">Wrongful Death</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--gold" href="#contact-form">Free Consultation</a>
+      </div>
+      <button class="nav__toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> &nbsp;/&nbsp; Contact</div>
+      <h1>Contact West Stone Law</h1>
+      <p>We&rsquo;re here 24/7. Call us, or send a message below and an attorney will reach out within one business hour.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container layout-2col">
+      <div class="reveal">
+        <span class="eyebrow">Send a Message</span>
+        <h2 style="margin-bottom:8px;">Request your free case review</h2>
+        <p style="margin-bottom:24px;">There&rsquo;s no cost and no obligation. Everything you tell us is confidential.</p>
+        <div class="lead-card" id="contact-form" style="box-shadow:var(--shadow-md);">
+          <form name="contact-page" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html" data-validate novalidate>
+            <input type="hidden" name="form-name" value="contact-page" />
+            <p hidden aria-hidden="true"><label>Don&rsquo;t fill this out if you&rsquo;re human: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+            <div class="form-success" role="status">Thank you &mdash; your request has been received. An attorney will contact you shortly.</div>
+            <div class="form-error" role="alert">Sorry, something went wrong sending your message. Please call us at (800)&nbsp;555-0100.</div>
+            <div class="grid-2">
+              <div class="field">
+                <label for="c-name">Full name *</label>
+                <input id="c-name" name="name" type="text" required autocomplete="name" />
+                <span class="err">Please enter your name.</span>
+              </div>
+              <div class="field">
+                <label for="c-phone">Phone *</label>
+                <input id="c-phone" name="phone" type="tel" required autocomplete="tel" />
+                <span class="err">Enter a valid phone number.</span>
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <label for="c-email">Email *</label>
+                <input id="c-email" name="email" type="email" required autocomplete="email" />
+                <span class="err">Enter a valid email address.</span>
+              </div>
+              <div class="field">
+                <label for="c-type">Type of case *</label>
+                <select id="c-type" name="case_type" required>
+                  <option value="">Select one&hellip;</option>
+                  <option>Wrongful death</option>
+                  <option>Car / truck accident</option>
+                  <option>Medical malpractice</option>
+                  <option>Workplace injury</option>
+                  <option>Slip &amp; fall</option>
+                  <option>Other personal injury</option>
+                </select>
+                <span class="err">Please choose a case type.</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="c-office">Preferred office</label>
+              <select id="c-office" name="office">
+                <option>No preference</option>
+                <option>Downtown</option>
+                <option>Westside</option>
+                <option>North County</option>
+                <option>Uptown</option>
+                <option>Bayside</option>
+                <option>Riverside</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="c-msg">Tell us what happened *</label>
+              <textarea id="c-msg" name="message" required placeholder="Share as much or as little as you'd like."></textarea>
+              <span class="err">Please add a brief description.</span>
+            </div>
+            <button class="btn btn--gold btn--block" type="submit">Submit My Free Review &rarr;</button>
+            <p class="form-note">&#128274; Submitting does not create an attorney-client relationship. Your information is confidential.</p>
+          </form>
+        </div>
+      </div>
+
+      <aside class="sidebar reveal">
+        <h3>Call us anytime</h3>
+        <p>Available 24 hours a day, 7 days a week for new matters.</p>
+        <p><a href="tel:+18005550100" style="color:var(--gold-300);font-weight:700;font-size:1.5rem;">(800) 555-0100</a></p>
+        <p style="margin-top:16px;">Prefer email?</p>
+        <p><a href="mailto:intake@weststonelaw.com" style="color:#fff;font-weight:600;">intake@weststonelaw.com</a></p>
+        <hr style="border:0;border-top:1px solid rgba(255,255,255,.15);margin:22px 0;" />
+        <p style="color:#c3cfde;">Can&rsquo;t travel? We make <strong style="color:#fff;">home and hospital visits</strong>. Just ask when you call.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section bg-paper2 section--tight">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Our Offices</span>
+        <h2>Six offices, one standard of care</h2>
+        <p class="lead" style="margin:14px auto 0;">Can&rsquo;t come to us? We make home and hospital visits. Just call.</p>
+      </div>
+      <div class="locations">
+        <div class="loc reveal">
+          <div class="loc__media">
+            <img src="https://images.unsplash.com/photo-1444723121867-7a241cacace9?auto=format&fit=crop&w=800&q=70" alt="Downtown skyline" loading="lazy" />
+            <span class="loc__label">Downtown</span>
+          </div>
+          <div class="loc__body">
+            <span class="loc__eyebrow">Main Office</span>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> 1200 Market Street, Suite 400<br>Metro City, ST 00001</p>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> <a href="tel:+18005550100">(800) 555-0100</a></p>
+          </div>
+        </div>
+        <div class="loc reveal">
+          <div class="loc__media">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=70" alt="Westside office buildings" loading="lazy" />
+            <span class="loc__label">Westside</span>
+          </div>
+          <div class="loc__body">
+            <span class="loc__eyebrow">Branch Office</span>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> 580 Riverside Drive, Suite 110<br>Westgate, ST 00002</p>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> <a href="tel:+18005550120">(800) 555-0120</a></p>
+          </div>
+        </div>
+        <div class="loc reveal">
+          <div class="loc__media">
+            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&q=70" alt="North County city street" loading="lazy" />
+            <span class="loc__label">North County</span>
+          </div>
+          <div class="loc__body">
+            <span class="loc__eyebrow">Branch Office</span>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> 95 Lakeview Blvd, Suite 230<br>Northpoint, ST 00003</p>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> <a href="tel:+18005550140">(800) 555-0140</a></p>
+          </div>
+        </div>
+        <div class="loc reveal">
+          <div class="loc__media">
+            <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=800&q=70" alt="Uptown skyline" loading="lazy" />
+            <span class="loc__label">Uptown</span>
+          </div>
+          <div class="loc__body">
+            <span class="loc__eyebrow">Branch Office</span>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> 410 Summit Avenue, Suite 300<br>Hightower, ST 00004</p>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> <a href="tel:+18005550160">(800) 555-0160</a></p>
+          </div>
+        </div>
+        <div class="loc reveal">
+          <div class="loc__media">
+            <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=800&q=70" alt="Bayside waterfront skyline" loading="lazy" />
+            <span class="loc__label">Bayside</span>
+          </div>
+          <div class="loc__body">
+            <span class="loc__eyebrow">Branch Office</span>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> 22 Harbor View Road, Suite 90<br>Baypoint, ST 00005</p>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> <a href="tel:+18005550180">(800) 555-0180</a></p>
+          </div>
+        </div>
+        <div class="loc reveal">
+          <div class="loc__media">
+            <img src="https://images.unsplash.com/photo-1518391846015-55a9cc003b25?auto=format&fit=crop&w=800&q=70" alt="Riverside bridge and skyline at night" loading="lazy" />
+            <span class="loc__label">Riverside</span>
+          </div>
+          <div class="loc__body">
+            <span class="loc__eyebrow">Branch Office</span>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> 760 Bridgewater Lane, Suite 210<br>Rivermont, ST 00006</p>
+            <p><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> <a href="tel:+18005550200">(800) 555-0200</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <h4>West Stone Law</h4>
+          <p>A personal injury law firm dedicated to families and the seriously injured &mdash; with a focus on wrongful death claims. Compassionate counsel, relentless advocacy.</p>
+        </div>
+        <div>
+          <h4>Practice Areas</h4>
+          <ul>
+            <li><a href="wrongful-death.html">Wrongful Death</a></li>
+            <li><a href="practice-areas.html">Car &amp; Truck Accidents</a></li>
+            <li><a href="practice-areas.html">Medical Malpractice</a></li>
+            <li><a href="practice-areas.html">Catastrophic Injury</a></li>
+            <li><a href="practice-areas.html">Workplace Injuries</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Firm</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="index.html#testimonials">Testimonials</a></li>
+            <li><a href="contact.html">Locations</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get Help Now</h4>
+          <p>Available 24/7 for new matters.</p>
+          <p style="margin:6px 0;"><a href="tel:+18005550100" style="color:var(--gold-300);font-weight:700;font-size:1.1rem;">(800) 555-0100</a></p>
+          <p><a href="mailto:intake@weststonelaw.com">intake@weststonelaw.com</a></p>
+          <div class="footer__social" style="margin-top:16px;">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="X">x</a>
+          </div>
+        </div>
+      </div>
+      <div class="disclaimer">
+        Attorney Advertising. The information on this website is for general informational purposes only and is not legal advice. Viewing this site or contacting the firm does not create an attorney-client relationship. Prior results do not guarantee a similar outcome. Figures shown are illustrative.
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; <span id="year">2026</span> West Stone Law. All rights reserved.</span>
+        <span><a href="#">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="#">Disclaimer</a> &nbsp;&middot;&nbsp; <a href="#">Site Map</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/a11y.js"></script>
+</body>
+</html>

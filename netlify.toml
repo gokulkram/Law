@@ -1,0 +1,9 @@
+# Netlify configuration for West Stone Law (static site, no build step)
+[build]
+  publish = "."
+
+# Optional: nicer URLs (e.g. /contact instead of /contact.html)
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 200

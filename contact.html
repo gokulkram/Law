@@ -55,7 +55,7 @@
         <h2 style="margin-bottom:8px;">Request your free case review</h2>
         <p style="margin-bottom:24px;">There&rsquo;s no cost and no obligation. Everything you tell us is confidential.</p>
         <div class="lead-card" id="contact-form" style="box-shadow:var(--shadow-md);">
-          <form name="contact-page" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html" data-validate novalidate>
+          <form name="contact-page" method="POST" action="/api/contact" data-validate novalidate>
             <input type="hidden" name="form-name" value="contact-page" />
             <p hidden aria-hidden="true"><label>Don&rsquo;t fill this out if you&rsquo;re human: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
             <div class="form-success" role="status">Thank you &mdash; your request has been received. An attorney will contact you shortly.</div>

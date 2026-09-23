@@ -109,11 +109,11 @@
       if (error) error.classList.remove("show");
       if (submitBtn) { submitBtn.disabled = true; submitBtn.innerHTML = "Sending&hellip;"; }
 
-      // Submit to Netlify Forms (URL-encoded POST to the site root).
+      // Submit to the Vercel function in api/contact.js, which emails the lead.
       var body = new URLSearchParams(new FormData(form)).toString();
-      fetch("/", {
+      fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        headers: { "Content-Type": "application/x-www-form-urlencoded", "Accept": "application/json" },
         body: body
       })
         .then(function (res) {

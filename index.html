@@ -66,7 +66,7 @@
       <div class="lead-card" id="lead-form">
         <h3>Free, confidential case review</h3>
         <p class="muted">Tell us what happened. We respond within one hour, 24/7.</p>
-        <form name="lead-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html" data-validate novalidate>
+        <form name="lead-contact" method="POST" action="/api/contact" data-validate novalidate>
           <input type="hidden" name="form-name" value="lead-contact" />
           <p hidden aria-hidden="true"><label>Don&rsquo;t fill this out if you&rsquo;re human: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
           <div class="form-success" role="status">Thank you &mdash; your request has been received. An attorney will contact you shortly.</div>

@@ -17,11 +17,12 @@ A modern, professional static website for a personal injury law firm, with a foc
 - **Logo:** Custom SVG. `assets/logo.svg` (dark, for light backgrounds), `assets/logo-light.svg` (light, for navy footer/nav), `assets/favicon.svg`.
 
 ## Before going live — replace the placeholders
-1. **Firm details:** phone `(800) 555-0100` (+ branch numbers `…0120`, `…0140`), email `intake@californialaw.com`, and the three office addresses. These appear in the top bar, nav, footer, and `contact.html`. Search & replace across all `.html` files.
+1. **Firm details:** phone `(800) 555-0100` (+ branch numbers `…0120`, `…0140`), email `intake@californialaw.com`, and the six California office locations (Los Angeles, Orange County, San Diego, Bay Area, Sacramento, Inland Empire — shown as city only in `index.html` and `contact.html`). Add each office's real street address; California Rule of Professional Conduct 7.2(c) requires at least one lawyer or firm office address in advertising. Search & replace across all `.html` files.
 2. **Photos:** Background/feature images use Unsplash CDN URLs (people-focused, as requested). Replace with the firm's own licensed photography for production. Hero image is set in `css/styles.css` (`.hero__bg`); feature/about images are `<img>` tags in the HTML. Drop real files into `images/` and update the paths.
-3. **Stats & testimonials:** Figures ($500M+, 98%, etc.) and client quotes are illustrative placeholders. Replace with real, verifiable numbers and approved client reviews. *(Check your state bar rules on testimonials and result claims.)*
+3. **Stats & testimonials:** Figures ($500M+, 98%, etc.) and client quotes are illustrative placeholders. Replace with real, verifiable numbers and approved client reviews. *(Check California Rules of Professional Conduct 7.1–7.5 on testimonials, result claims, and firm names.)*
 4. **Contact form:** Wired to **Netlify Forms** (see section below). It works automatically once the site is deployed to Netlify — no extra code needed.
-5. **Legal disclaimer & social links:** Review the footer disclaimer with the firm; update the `#` social links and Privacy/Disclaimer page links.
+5. **California legal content:** `wrongful-death.html` and `practice-areas.html` cite California deadlines and rules (CCP §377.60, §335.1, §340.5; Gov. Code §911.2; MICRA; comparative fault; workers' comp exclusivity). Have a California attorney confirm them before launch and whenever the law changes.
+6. **Legal disclaimer & social links:** Review the footer disclaimer with the firm; update the `#` social links and Privacy/Disclaimer page links.
 
 ## Run locally
 Just open `index.html` in a browser. Or serve the folder:

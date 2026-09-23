@@ -1,4 +1,4 @@
-# West Stone Law — Website
+# California Law — Website
 
 A modern, professional static website for a personal injury law firm, with a focus on **wrongful death** cases. Built from scratch with plain HTML, CSS, and JavaScript — no build step, no dependencies.
 
@@ -17,7 +17,7 @@ A modern, professional static website for a personal injury law firm, with a foc
 - **Logo:** Custom SVG. `assets/logo.svg` (dark, for light backgrounds), `assets/logo-light.svg` (light, for navy footer/nav), `assets/favicon.svg`.
 
 ## Before going live — replace the placeholders
-1. **Firm details:** phone `(800) 555-0100` (+ branch numbers `…0120`, `…0140`), email `intake@weststonelaw.com`, and the three office addresses. These appear in the top bar, nav, footer, and `contact.html`. Search & replace across all `.html` files.
+1. **Firm details:** phone `(800) 555-0100` (+ branch numbers `…0120`, `…0140`), email `intake@californialaw.com`, and the three office addresses. These appear in the top bar, nav, footer, and `contact.html`. Search & replace across all `.html` files.
 2. **Photos:** Background/feature images use Unsplash CDN URLs (people-focused, as requested). Replace with the firm's own licensed photography for production. Hero image is set in `css/styles.css` (`.hero__bg`); feature/about images are `<img>` tags in the HTML. Drop real files into `images/` and update the paths.
 3. **Stats & testimonials:** Figures ($500M+, 98%, etc.) and client quotes are illustrative placeholders. Replace with real, verifiable numbers and approved client reviews. *(Check your state bar rules on testimonials and result claims.)*
 4. **Contact form:** Wired to **Netlify Forms** (see section below). It works automatically once the site is deployed to Netlify — no extra code needed.
@@ -43,7 +43,7 @@ How it's set up (already done in the markup):
 
 **After your first deploy:**
 1. In the Netlify dashboard go to **Forms** to view submissions.
-2. Set up **Forms → Form notifications** to email new leads to the firm (e.g. `intake@weststonelaw.com`), or connect Slack/a webhook.
+2. Set up **Forms → Form notifications** to email new leads to the firm (e.g. `intake@californialaw.com`), or connect Slack/a webhook.
 3. Optionally enable reCAPTCHA in the form settings for extra spam protection.
 
 > Note: form submissions only work on the deployed Netlify site. When testing locally (`python -m http.server`), the form will validate but the `POST` to `/` won't be captured — that's expected.

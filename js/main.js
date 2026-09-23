@@ -1,4 +1,4 @@
-/* West Stone Law — interactions */
+/* California Law — interactions */
 (function () {
   "use strict";
 

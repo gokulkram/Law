@@ -1,4 +1,4 @@
-# Netlify configuration for West Stone Law (static site, no build step)
+# Netlify configuration for California Law (static site, no build step)
 [build]
   publish = "."
 

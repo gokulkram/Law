@@ -1,5 +1,5 @@
 /* =========================================================
-   West Stone Law — Accessibility menu
+   California Law — Accessibility menu
    Self-contained widget: injects a floating button + panel,
    applies user preferences, and remembers them (localStorage).
    ========================================================= */

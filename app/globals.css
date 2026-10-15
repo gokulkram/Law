@@ -103,6 +103,10 @@ p { color: var(--muted); }
 .topbar__cta { color: var(--gold-300); font-weight: 600; }
 @media (max-width: 720px){ .topbar__left { display: none; } .topbar .container { justify-content: center; } }
 
+/* ---------- brand logo (components/Logo.tsx) ---------- */
+.logo { display: block; width: auto; height: 100%; }
+.logo--plate { border-radius: 8px; }
+
 /* ---------- header / nav ---------- */
 .header {
   position: sticky; top: 0; z-index: 50;
@@ -112,7 +116,8 @@ p { color: var(--muted); }
 }
 .header.is-stuck { box-shadow: var(--shadow-sm); }
 .nav { display: flex; align-items: center; justify-content: space-between; min-height: 76px; }
-.nav__logo img { height: 42px; width: auto; }
+.nav__logo { display: block; height: 58px; flex: 0 0 auto; }
+@media (max-width: 520px){ .nav__logo { height: 50px; } }
 .nav__links { display: flex; align-items: center; gap: 26px; }
 .nav__links a { font-weight: 500; font-size: .98rem; color: var(--navy-800); position: relative; padding: 6px 0; white-space: nowrap; }
 @media (max-width: 1180px) and (min-width: 981px){ .nav__links { gap: 18px; } .nav__links a { font-size: .93rem; } .nav__cta .btn { padding-left: 18px; padding-right: 18px; } }
@@ -510,7 +515,7 @@ p { color: var(--muted); }
 /* ---------- footer ---------- */
 .footer { background: var(--navy-900); color: #aebdce; padding: 64px 0 0; }
 .footer__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 40px; padding-bottom: 44px; }
-.footer__logo img { height: 44px; margin-bottom: 18px; }
+.footer__logo { display: block; width: max-content; height: 72px; margin-bottom: 18px; }
 .footer p { color: #9fb0c4; font-size: .94rem; }
 .footer h4 { color: #fff; font-size: 1rem; margin-bottom: 16px; font-family: var(--font-body); letter-spacing: .02em; }
 .footer ul li { margin-bottom: 10px; }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { PHONE, PHONE_HREF, EMAIL, SOCIAL } from "@/lib/site";
+import Logo from "@/components/Logo";
 
 const social = SOCIAL.filter((s) => s.url);
 
@@ -9,7 +10,7 @@ export default function Footer() {
       <div className="container">
         <div className="footer__grid">
           <div>
-            <h4>California Law</h4>
+            <Link className="footer__logo" href="/" aria-label="California Law home"><Logo tone="light" /></Link>
             <p>A California personal injury law firm dedicated to families and the seriously injured - with a focus on wrongful death claims. Compassionate counsel, relentless advocacy.</p>
           </div>
           <div>

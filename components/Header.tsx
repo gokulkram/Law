@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { NAV, PHONE, PHONE_HREF, EMAIL } from "@/lib/firm";
+import Logo from "@/components/Logo";
 
 export default function Header() {
   const pathname = usePathname();
@@ -38,7 +39,7 @@ export default function Header() {
       <header className={`header${stuck ? " is-stuck" : ""}`}>
         <div className="container nav">
           <Link className="nav__logo" href="/" aria-label="California Law home">
-            <img src="/assets/logo.svg" alt="California Law" />
+            <Logo />
           </Link>
           <nav className={`nav__links${open ? " open" : ""}`} aria-label="Primary">
             {NAV.map((item) => (

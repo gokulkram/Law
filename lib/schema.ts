@@ -28,7 +28,7 @@ export function firmSchema() {
         "@id": FIRM_ID,
         name: SITE_NAME,
         description: SITE_DESCRIPTION,
-        ...(SITE_URL && { url: SITE_URL, logo: `${SITE_URL}/assets/logo.svg`, image: `${SITE_URL}/opengraph-image` }),
+        ...(SITE_URL && { url: SITE_URL, logo: `${SITE_URL}/assets/logo-header.webp`, image: `${SITE_URL}/opengraph-image` }),
         telephone: PHONE_E164,
         email: EMAIL,
         address: address(OFFICES[0]),

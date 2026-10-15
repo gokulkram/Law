@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
   icons: {
-    icon: [{ url: "/favicon.ico", sizes: "48x48" }, { url: "/assets/favicon.svg", type: "image/svg+xml" }],
+    icon: [{ url: "/favicon.ico", sizes: "48x48" }, { url: "/assets/icon-192.png", type: "image/png", sizes: "192x192" }],
     apple: "/apple-touch-icon.png",
   },
   formatDetection: { telephone: false },

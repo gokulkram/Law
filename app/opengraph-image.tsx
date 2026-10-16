@@ -1,7 +1,8 @@
 import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
-import { PHONE, SITE_NAME } from "@/lib/site";
+import { getContent } from "@/lib/content-store";
+import { SITE_NAME } from "@/lib/site";
 
 // Transparent cut-out of the brand logo (same file as the site footer).
 const logoSrc = `data:image/png;base64,${await readFile(join(process.cwd(), "public/assets/logo-footer.png"), "base64")}`;
@@ -11,7 +12,8 @@ export const alt = `${SITE_NAME} - California personal injury and wrongful death
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OpengraphImage() {
+export default async function OpengraphImage() {
+  const { firm } = await getContent();
   return new ImageResponse(
     (
       <div
@@ -36,7 +38,7 @@ export default function OpengraphImage() {
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 28, color: "#d7e0ec" }}>
           <span>Six offices across California · Available 24/7</span>
-          <span style={{ color: "#fff", fontWeight: 700 }}>{PHONE}</span>
+          <span style={{ color: "#fff", fontWeight: 700 }}>{firm.phone}</span>
         </div>
       </div>
     ),

@@ -4,6 +4,8 @@ import type { Block } from "@/content/types";
 
 // Renders the small inline syntax used in content files: **bold** and [text](/path).
 const TOKEN = /\*\*(.+?)\*\*|\[(.+?)\]\((.+?)\)/g;
+// Links editors may use: site paths, https, email and phone. Anything else renders as plain text.
+export const SAFE_HREF = /^(\/(?!\/)|https:\/\/|mailto:|tel:)/i;
 
 export function Inline({ text }: { text: string }) {
   const out: React.ReactNode[] = [];
@@ -11,6 +13,7 @@ export function Inline({ text }: { text: string }) {
   for (const m of text.matchAll(TOKEN)) {
     if (m.index > last) out.push(text.slice(last, m.index));
     if (m[1]) out.push(<strong key={m.index}>{m[1]}</strong>);
+    else if (!SAFE_HREF.test(m[3])) out.push(m[2]); // unsafe link (e.g. javascript:) - show the text only
     else {
       const href = m[3];
       out.push(

@@ -1,17 +1,17 @@
 import Link from "next/link";
-import { PHONE, PHONE_HREF, EMAIL, SOCIAL } from "@/lib/site";
 import Logo from "@/components/Logo";
+import { getContent } from "@/lib/content-store";
 
-const social = SOCIAL.filter((s) => s.url);
-
-export default function Footer() {
+export default async function Footer() {
+  const { firm } = await getContent();
+  const social = firm.social.filter((s) => s.url);
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer__grid">
           <div>
             <Link className="footer__logo" href="/" aria-label="California Law home"><Logo tone="light" /></Link>
-            <p>A California personal injury law firm dedicated to families and the seriously injured - with a focus on wrongful death claims. Compassionate counsel, relentless advocacy.</p>
+            <p>{firm.footerAbout}</p>
           </div>
           <div>
             <h4>Practice Areas</h4>
@@ -38,8 +38,8 @@ export default function Footer() {
           <div>
             <h4>Get Help Now</h4>
             <p>Available 24/7 for new matters.</p>
-            <p style={{ margin: "6px 0" }}><a href={PHONE_HREF} style={{ color: "var(--gold-300)", fontWeight: 700, fontSize: "1.1rem" }}>{PHONE}</a></p>
-            <p><a href={`mailto:${EMAIL}`}>{EMAIL}</a></p>
+            <p style={{ margin: "6px 0" }}><a href={firm.phoneHref} style={{ color: "var(--gold-300)", fontWeight: 700, fontSize: "1.1rem" }}>{firm.phone}</a></p>
+            <p><a href={`mailto:${firm.email}`}>{firm.email}</a></p>
             {social.length > 0 && (
               <div className="footer__social" style={{ marginTop: 16 }}>
                 {social.map((s) => (
@@ -50,7 +50,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="disclaimer">
-          Attorney Advertising. The information on this website is for general informational purposes only and is not legal advice. Viewing this site or contacting the firm does not create an attorney-client relationship. Prior results do not guarantee a similar outcome. Figures shown are illustrative.
+          {firm.footerDisclaimer}
         </div>
         <div className="footer__bottom">
           <span>&copy; {new Date().getFullYear()} California Law. All rights reserved.</span>

@@ -1,6 +1,7 @@
-// Registry of practice-area pages. Add new pages here - routes, the practice-areas hub, the
-// sitemap, the HTML site map and structured data all read from this list.
-import type { ServiceContent, ServiceGroup } from "@/content/types";
+// SEED DATA ONLY. The live site reads practice-area pages from the database (lib/content-store.ts);
+// these files were imported with `npm run content:import` and are kept for reference and checks.
+// Edits made here do not reach the site.
+import type { ServiceContent } from "@/content/types";
 
 import wdCar from "./wrongful-death--car-accident";
 import wdTruck from "./wrongful-death--truck-accident";
@@ -34,13 +35,3 @@ export const SERVICE_PAGES: ServiceContent[] = [
   catastrophic, brain, spinal, burn,
   medMal, nursingHome, premises, dogBite, product, workplace, government,
 ];
-
-export const SERVICE_GROUPS: { group: ServiceGroup; intro: string }[] = [
-  { group: "Wrongful Death", intro: "When negligence takes a life, California law lets the family hold the responsible party accountable. Start here for your rights, deadlines, and the claims we handle." },
-  { group: "Vehicle Accidents", intro: "Crashes on California roads - cars, trucks, motorcycles, rideshares, and the pedestrians and cyclists who share them." },
-  { group: "Serious Injuries", intro: "Injuries that change a life require accounting for a lifetime of care, lost earnings, and loss of independence." },
-  { group: "Other Practice Areas", intro: "Medical negligence, elder abuse, dangerous property and products, workplace injuries, and claims against public entities." },
-];
-
-const BY_SLUG = new Map(SERVICE_PAGES.map((s) => [s.slug, s]));
-export const getService = (slug: string) => BY_SLUG.get(slug);

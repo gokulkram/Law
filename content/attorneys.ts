@@ -1,4 +1,4 @@
-// The firm's attorneys. EMPTY until the firm provides real details - never add placeholder people.
+// SEED DATA ONLY - see content/services/index.ts. The firm's attorneys. EMPTY until the firm provides real details - never add placeholder people.
 //
 // While this list is empty: /attorneys and /attorneys/* return 404, no "Reviewed by" bylines appear,
 // and nothing links here. Add an attorney and the team page, bio page, Person structured data, sitemap
@@ -24,9 +24,3 @@
 import type { Attorney } from "@/content/types";
 
 export const ATTORNEYS: Attorney[] = [];
-
-const BY_SLUG = new Map(ATTORNEYS.map((a) => [a.slug, a]));
-export const getAttorney = (slug?: string) => (slug ? BY_SLUG.get(slug) : undefined);
-
-/** Official State Bar of California profile for a license number. */
-export const barProfileUrl = (barNumber: string) => `https://apps.calbar.ca.gov/attorney/Licensee/Detail/${barNumber}`;

@@ -4,34 +4,37 @@ import ContactForm from "@/components/ContactForm";
 import JsonLd from "@/components/JsonLd";
 import { Blocks, Inline } from "@/components/RichText";
 import { CtaBand, PageHero } from "@/components/Sections";
-import { getCard, type PageCard } from "@/content";
-import { articlesFor } from "@/content/articles";
 import type { ServiceContent } from "@/content/types";
-import { servicePageSchema } from "@/lib/schema";
-import { OFFICES, PHONE, PHONE_HREF } from "@/lib/site";
+import { getContent } from "@/lib/content-store";
+import type { Seo } from "@/lib/admin/page-model";
+import { applySchemaSettings, customJsonLd, servicePageSchema } from "@/lib/schema";
+import type { Office } from "@/lib/firm";
 
 // Breadcrumb trail: city + service pages sit under their office page, wrongful-death sub-pages
 // under the wrongful death hub, everything else under Practice Areas.
-function trailFor(s: ServiceContent): [string, string][] {
-  const office = s.location && OFFICES.find((o) => o.id === s.location);
+function trailFor(s: ServiceContent, offices: Office[]): [string, string][] {
+  const office = s.location && offices.find((o) => o.id === s.location);
   if (office) return [[office.label, `/${office.id}`], [s.name, s.slug]];
   return s.slug.startsWith("/wrongful-death/")
     ? [["Wrongful Death", "/wrongful-death"], [s.name, s.slug]]
     : [["Practice Areas", "/practice-areas"], [s.name, s.slug]];
 }
 
-export default function ServicePage({ s }: { s: ServiceContent }) {
-  const related = s.related.map(getCard).filter((r): r is PageCard => !!r);
+export default async function ServicePage({ s, seo: draftSeo }: { s: ServiceContent; seo?: Seo }) {
+  const c = await getContent();
+  const seo = draftSeo ?? c.seo(s.slug);
+  const related = c.cardsFor(s.related);
   // City pages show the guides for their statewide equivalent.
   const guideKey = s.location ? (s.slug.endsWith("/wrongful-death-lawyer") ? "/wrongful-death" : `/${s.slug.split("/")[2]}`) : s.slug;
-  const guides = articlesFor(guideKey).slice(0, 4);
-  const office = s.location ? OFFICES.find((o) => o.id === s.location) : undefined;
-  const phone = office ? { text: office.phone, href: `tel:${office.tel}` } : { text: PHONE, href: PHONE_HREF };
+  const guides = c.articlesFor(guideKey).slice(0, 4);
+  const office = s.location ? c.firm.offices.find((o) => o.id === s.location) : undefined;
+  const phone = office ? { text: office.phone, href: `tel:${office.tel}` } : { text: c.firm.phone, href: c.firm.phoneHref };
 
   return (
     <main>
-      <JsonLd data={servicePageSchema(s)} />
-      <PageHero trail={trailFor(s)} title={s.h1}>{s.heroText}</PageHero>
+      <JsonLd data={applySchemaSettings(servicePageSchema(s, c), seo)} />
+      <JsonLd data={customJsonLd(seo)} />
+      <PageHero trail={trailFor(s, c.firm.offices)} title={s.h1}>{s.heroText}</PageHero>
 
       <section className="section">
         <div className="container layout-2col">

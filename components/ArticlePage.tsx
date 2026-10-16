@@ -4,20 +4,23 @@ import ContactForm from "@/components/ContactForm";
 import JsonLd from "@/components/JsonLd";
 import { Blocks, Inline } from "@/components/RichText";
 import { CtaBand, PageHero } from "@/components/Sections";
-import { getCard, type PageCard } from "@/content";
 import type { ArticleContent } from "@/content/types";
-import { articleSchema } from "@/lib/schema";
-import { PHONE, PHONE_HREF } from "@/lib/site";
+import { getContent } from "@/lib/content-store";
+import type { Seo } from "@/lib/admin/page-model";
+import { applySchemaSettings, articleSchema, customJsonLd } from "@/lib/schema";
 
 // Guide page (/resources/...): same reading layout as practice-area pages, with Article structured data
 // and links to the practice areas the guide supports.
-export default function ArticlePage({ a }: { a: ArticleContent }) {
-  const services = a.services.map(getCard).filter((c): c is PageCard => !!c);
-  const related = a.related.map(getCard).filter((c): c is PageCard => !!c && !a.services.includes(c.slug));
+export default async function ArticlePage({ a, seo: draftSeo }: { a: ArticleContent; seo?: Seo }) {
+  const c = await getContent();
+  const seo = draftSeo ?? c.seo(a.slug);
+  const services = c.cardsFor(a.services);
+  const related = c.cardsFor(a.related).filter((r) => !a.services.includes(r.slug));
 
   return (
     <main>
-      <JsonLd data={articleSchema(a)} />
+      <JsonLd data={applySchemaSettings(articleSchema(a, c), seo)} />
+      <JsonLd data={customJsonLd(seo)} />
       <PageHero trail={[["Resources", "/resources"], [a.name, a.slug]]} title={a.h1}>{a.heroText}</PageHero>
 
       <section className="section">
@@ -89,7 +92,7 @@ export default function ArticlePage({ a }: { a: ArticleContent }) {
             <aside className="sidebar">
               <h3>Prefer to talk?</h3>
               <p>Speak with our team now - free, confidential, and available 24/7.</p>
-              <p><a href={PHONE_HREF} style={{ color: "var(--gold-300)", fontWeight: 700, fontSize: "1.25rem" }}>{PHONE}</a></p>
+              <p><a href={c.firm.phoneHref} style={{ color: "var(--gold-300)", fontWeight: 700, fontSize: "1.25rem" }}>{c.firm.phone}</a></p>
             </aside>
           </div>
         </div>

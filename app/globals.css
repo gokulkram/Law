@@ -498,6 +498,7 @@ p { color: var(--muted); }
 .sidebar { position: sticky; top: 100px; background: var(--navy-800); color: #fff; border-radius: var(--radius); padding: 28px; }
 .sidebar h3 { color: #fff; }
 .sidebar p { color: #c3cfde; font-size: .92rem; margin: 8px 0 18px; }
+.sidebar__note strong { color: #fff; } /* bold text in the contact page's visits note */
 /* stacked sidebar (CTA card + stats card) — wrapper owns the sticky */
 .aside-stack { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 20px; }
 .aside-stack .sidebar { position: static; }
@@ -714,3 +715,6 @@ html.a11y-cursor, html.a11y-cursor * {
 .office-card__map { width: 100%; height: 200px; border: 0; border-radius: var(--radius-sm); margin-top: 8px; }
 .loc__body a.loc__more { color: var(--navy-600); font-weight: 600; font-size: .92rem; }
 .loc__body a.loc__more:hover { color: var(--gold); }
+
+/* Links inside editable text on the practice-areas hub ("Don't see your situation?") */
+.pa-group p a { color: var(--navy-600); font-weight: 600; }

@@ -1,4 +1,4 @@
-// Registry of city + service pages (/los-angeles/car-accident-lawyer, ...).
+// SEED DATA ONLY - see content/services/index.ts. City + service pages (/los-angeles/car-accident-lawyer, ...).
 import type { ServiceContent } from "@/content/types";
 
 import laCar from "./los-angeles--car-accident-lawyer";
@@ -12,5 +12,3 @@ import sdTruck from "./san-diego--truck-accident-lawyer";
 import sdDeath from "./san-diego--wrongful-death-lawyer";
 
 export const LOCAL_PAGES: ServiceContent[] = [laCar, laTruck, laDeath, ocCar, ocTruck, ocDeath, sdCar, sdTruck, sdDeath];
-
-export const localPagesFor = (officeId: string) => LOCAL_PAGES.filter((p) => p.location === officeId);

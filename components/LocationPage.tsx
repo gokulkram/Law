@@ -4,25 +4,27 @@ import ContactForm from "@/components/ContactForm";
 import JsonLd from "@/components/JsonLd";
 import { Blocks, Inline } from "@/components/RichText";
 import { CtaBand, PageHero } from "@/components/Sections";
-import { getCard, type PageCard } from "@/content";
-import { localPagesFor } from "@/content/local";
 import type { LocationContent } from "@/content/types";
-import { locationPageSchema } from "@/lib/schema";
-import { OFFICES } from "@/lib/site";
+import { getContent, type PageCard } from "@/lib/content-store";
+import type { Seo } from "@/lib/admin/page-model";
+import { applySchemaSettings, customJsonLd, locationPageSchema } from "@/lib/schema";
 
 // Statewide practice areas linked from every office page (after any local pages for this office).
 const KEY_SERVICES = ["/wrongful-death", "/car-accident-lawyer", "/truck-accident-lawyer", "/motorcycle-accident-lawyer", "/pedestrian-accident-lawyer", "/catastrophic-injury-lawyer", "/medical-malpractice-lawyer", "/premises-liability-lawyer", "/government-claims-lawyer"];
 
-export default function LocationPage({ l }: { l: LocationContent }) {
-  const office = OFFICES.find((o) => o.id === l.officeId)!;
-  const local: PageCard[] = localPagesFor(l.officeId).map((p) => ({ slug: p.slug, name: p.name, summary: p.summary }));
-  const statewide = KEY_SERVICES.map(getCard).filter((c): c is PageCard => !!c);
+export default async function LocationPage({ l, seo: draftSeo }: { l: LocationContent; seo?: Seo }) {
+  const c = await getContent();
+  const seo = draftSeo ?? c.seo(l.slug);
+  const office = c.firm.offices.find((o) => o.id === l.officeId)!;
+  const local: PageCard[] = c.localPagesFor(l.officeId).map((p) => ({ slug: p.slug, name: p.name, summary: p.summary }));
+  const statewide = c.cardsFor(KEY_SERVICES);
   const addressLine = `${office.street ? `${office.street}, ` : ""}${office.locality}, CA${office.postalCode ? ` ${office.postalCode}` : ""}`;
   const mapQuery = encodeURIComponent(`California Law, ${addressLine}`);
 
   return (
     <main>
-      <JsonLd data={locationPageSchema(l)} />
+      <JsonLd data={applySchemaSettings(locationPageSchema(l, c), seo)} />
+      <JsonLd data={customJsonLd(seo)} />
       <PageHero trail={[[l.name, l.slug]]} title={l.h1}>{l.heroText}</PageHero>
 
       <section className="section">

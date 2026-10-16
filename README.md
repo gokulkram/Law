@@ -7,14 +7,14 @@ The original plain-HTML version of the site is kept in `legacy-static/` for refe
 ## Structure
 | Path | Purpose |
 |------|---------|
-| `app/page.tsx` | Home — hero with people-photo background, **contact form at top**, practice areas, wrongful-death feature, process, testimonials, locations, CTA |
-| `app/wrongful-death/page.tsx` | Wrongful death overview (the firm's emphasis) — links to its sub-pages |
-| `app/practice-areas/page.tsx` | Practice-areas hub — every service page, grouped |
-| `app/[service]/page.tsx`, `app/wrongful-death/[slug]/page.tsx` | Practice-area (service) pages, rendered from `content/services/` by `components/ServicePage.tsx` |
-| `app/about/page.tsx` | Firm story and values |
-| `app/contact/page.tsx` | Full contact form + all six office locations |
-| `app/privacy`, `app/disclaimer`, `app/site-map` | Privacy Policy, Legal Disclaimer, HTML site map |
-| `app/thank-you/page.tsx` | Shown after a no-JavaScript form post (`noindex`) |
+| `app/(site)/page.tsx` | Home — hero with people-photo background, **contact form at top**, practice areas, wrongful-death feature, process, testimonials, locations, CTA |
+| `app/(site)/wrongful-death/page.tsx` | Wrongful death overview (the firm's emphasis) — links to its sub-pages |
+| `app/(site)/practice-areas/page.tsx` | Practice-areas hub — every service page, grouped |
+| `app/(site)/[service]/page.tsx`, `app/(site)/wrongful-death/[slug]/page.tsx` | Practice-area (service) pages, rendered from `content/services/` by `components/ServicePage.tsx` |
+| `app/(site)/about/page.tsx` | Firm story and values |
+| `app/(site)/contact/page.tsx` | Full contact form + all six office locations |
+| `app/(site)/privacy`, `app/(site)/disclaimer`, `app/(site)/site-map` | Privacy Policy, Legal Disclaimer, HTML site map |
+| `app/(site)/thank-you/page.tsx` | Shown after a no-JavaScript form post (`noindex`) |
 | `app/not-found.tsx` | Branded 404 page |
 | `app/api/contact/route.ts` | Route handler that emails form submissions to the firm |
 | `app/layout.tsx` | Shared shell: top bar, header, footer, accessibility menu, font loading |
@@ -77,14 +77,59 @@ Old `.html` URLs (`/about.html` etc.) permanently redirect to the clean URLs (`/
 - **Type:** *Inter*, self-hosted through `next/font` (no request to Google Fonts at runtime).
 - **Logo:** Custom SVG. `public/assets/logo.svg` (dark, for light backgrounds), `public/assets/logo-light.svg` (light, for navy footer/nav), `public/assets/favicon.svg`.
 
+## Admin panel (`/admin`) - in progress
+
+**The website's pages now come from the Supabase database**, not from the files in `content/`, and are edited in the admin panel. All six phases are built: admin foundation, content in the database, page editor, SEO and redirects, main pages' text, and site settings + media library.
+
+> **`content/*.ts` files are seed data only.** They were imported once with `npm run content:import`; editing them no longer changes the site, and `npm run check:content` checks those files, not the live database content. Don't use the "add a page" steps in the sections above - pages will be created in the admin panel.
+
+| Path | Purpose |
+|------|---------|
+| `supabase/migrations/` | Database schema: `profiles` (staff roles), `pages` (content + SEO, draft and published copies, attorney-review status), `page_revisions`, `site_settings`, `redirects`, `media`, the `media` storage bucket, and row-level security |
+| `app/admin/` | Admin panel - login, dashboard, users (admins only), my account. Outside the `app/(site)` route group, so it has no site header/footer |
+| `proxy.ts` | Runs for `/admin` only: refreshes the session and sends signed-out visitors to `/admin/login` |
+| `lib/admin/auth.ts` | `requireStaff()` / `staffFor()` - every admin page and Server Action re-checks the role here |
+| `lib/supabase/` | Supabase clients: `server.ts` (signed-in user, RLS applies), `admin.ts` (secret key, server only) |
+| `lib/content-store.ts` | **Where the site gets its content.** Loads every published page in one cached query (tag `content`) and offers lookups (`service()`, `card()`, `sitePages`, ...). Throws if Supabase errors or returns no pages, so a broken database fails the build and Vercel keeps the previous deployment |
+| `app/admin/(panel)/pages/` | Page list, **page editor** (`[id]`), new page, and their Server Actions (save draft, publish, discard, unpublish, delete, restore a version, review sign-off) |
+| `components/admin/editor/` | Editor UI - form for each page type, live checks, SEO preview, history |
+| `lib/admin/page-model.ts`, `lib/admin/validate.ts` | Page types, URL rules, structure check, pages the code depends on; the `check:content` rules as a pure function (run live in the editor and again on publish) |
+| `app/admin/preview/[id]` | Draft preview with the real page template |
+| `app/admin/(panel)/seo/` | Site-wide SEO (admins): Search Console / Bing verification, GA4 or Tag Manager, extra robots.txt rules, "block search engines" for staging; plus a page-health table for every page |
+| `app/admin/(panel)/redirects/` | Redirect manager (admins + editors). Redirects are resolved by the content routes just before a 404 (`redirectOrNotFound` in `lib/site.ts`), so a live page always wins and changes apply immediately. Responses are 308 (permanent) / 307 (temporary) |
+| `components/static-pages/` | The main pages (home, about, contact, privacy, disclaimer, wrongful death overview, hubs) as views that take their text as props - used by the routes in `app/(site)/` and by the draft preview |
+| `lib/admin/static-model.ts` | Which text fields each main page has (what the editor shows) and their structure check. To make more text editable: add the field here, to the type and seed in `content/static-text.ts`, and use it in the view |
+| `app/admin/(panel)/settings/` | **Site settings** (admins): firm phone/email/description, social links, contact-form case types, footer text, the six offices' details and photos, and the home/wrongful-death figures and testimonials (with a "verified" flag - placeholders show a warning on the dashboard and in the build log) |
+| `app/admin/(panel)/media/` | **Media library** (admins + editors): uploads go from the browser straight to Supabase Storage via a one-time signed URL; JPEG/PNG/WebP/AVIF/GIF up to 10 MB (no SVG). Images in use can't be deleted. Image fields (attorney photo, share image, office photo) pick from here |
+| `lib/admin/settings-model.ts` | Site-wide SEO settings and redirect rules (validation shared by the admin and the site) |
+| `scripts/import-content.mjs` | `npm run content:import` - copies the `content/` files into the database (skips pages already there; `--force <path>` overwrites one; `--dry-run`). Every row is read back and compared with its file |
+
+**Roles:** Admin (everything, incl. users and settings), Editor (pages, SEO, media, redirects), Attorney reviewer (reads everything, signs off reviews - only as the attorney their account is linked to under Users).
+
+**Editing workflow:** edits are saved as a *draft*; the site keeps showing the published version until someone presses **Publish** (which also moves "Last updated" to today if the text changed). Errors in the Checks panel block publishing; warnings don't. A save can't overwrite someone else's newer save - the editor says so instead. Pages linked from the site's code (home page, footer, the wrongful-death hub) can't be unpublished or deleted.
+
+**Per-page SEO** (editor → Search engines → Advanced): noindex / nofollow, canonical URL, sitemap exclusion and priority, social-sharing title/description/image, FAQ structured data on/off, and custom JSON-LD (parsed and escaped, never output raw). Noindex pages are left out of `sitemap.xml` automatically.
+
+**Attorney review:** a sign-off records a fingerprint of the exact text reviewed (computed by the database). The page's "Legal review by …" byline and its structured data appear only while the *live* text matches it; edit the text and the page shows "Needs review" until it is signed off again. There is no public sign-up: admins create accounts under Users and send the temporary password.
+
+**Setup:** copy `.env.example` to `.env.local` and fill in the Supabase keys (also add them in Vercel); apply the migration (Supabase SQL Editor, or `supabase db push`); in Supabase → Authentication → Sign In / Providers, turn off "Allow new users to sign up"; then create the first admin with `npm run admin:create -- you@example.com "Your Name"`.
+
+**Firm details** are read with `getContent().firm` / `.credibility` (seeded from `content/firm.ts` with `npm run content:import -- --settings`). `Header`, `ContactForm` and `Testimonials` are small server wrappers that pass these to their interactive `*Client` components. The site name, default meta description and the menu/footer link lists stay in `lib/firm.ts` (code). Office ids are part of URLs, so adding or removing an office is a code change.
+
+All public pages live in `app/(site)/` (a route group - URLs are unchanged) and must stay static: never call `cookies()` or the Supabase server client from the root or `(site)` layouts.
+
+**Updating the live site:** pages are prerendered and cached. Saving in the admin panel refreshes them; after changing the database any other way (a re-import, the Supabase dashboard), press **Refresh site content** on the admin dashboard. A new deployment always starts from the database (the cache is versioned per build in `next.config.ts`).
+
+**Vercel:** builds read the database, so `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` and `SUPABASE_SECRET_KEY` must be set for Production *and* Preview, or the build fails.
+
 ## Before going live — replace the placeholders
 1. **Site URL:** set `NEXT_PUBLIC_SITE_URL` (e.g. `https://www.yourfirm.com`) in Vercel, then redeploy — the value is baked in at build time. Canonical tags, Open Graph URLs and the sitemap entries are only output when it is set, so a placeholder domain never reaches search engines.
-2. **Firm details:** phone `(800) 555-0100` (+ branch numbers), email `intake@californialaw.com`, and the six California office locations (shown as city only). Edit them in `lib/site.ts` — fill each office's `street` and `postalCode` (they appear on the site and in the structured data). California Rule of Professional Conduct 7.2(c) requires at least one lawyer or firm office address in advertising; also add the responsible lawyer's name and address to `app/disclaimer/page.tsx`.
-3. **Photos:** The images in `public/images/` are stock placeholders (Unsplash; the office photos are not of the actual cities). Replace them with the firm's own licensed photography — real office or attorney photos help with trust and local search. Hero and CTA backgrounds are set in `app/globals.css` (`.hero__bg`, `.ctaband`); office images in `lib/site.ts`; the about image in `app/about/page.tsx`. Save new images as WebP.
+2. **Firm details:** phone `(800) 555-0100` (+ branch numbers), email `intake@californialaw.com`, and the six California office locations (shown as city only). Edit them in `lib/site.ts` — fill each office's `street` and `postalCode` (they appear on the site and in the structured data). California Rule of Professional Conduct 7.2(c) requires at least one lawyer or firm office address in advertising; also add the responsible lawyer's name and address to `app/(site)/disclaimer/page.tsx`.
+3. **Photos:** The images in `public/images/` are stock placeholders (Unsplash; the office photos are not of the actual cities). Replace them with the firm's own licensed photography — real office or attorney photos help with trust and local search. Hero and CTA backgrounds are set in `app/globals.css` (`.hero__bg`, `.ctaband`); office images in `lib/site.ts`; the about image in `app/(site)/about/page.tsx`. Save new images as WebP.
 4. **Stats & testimonials:** Figures ($500M+, 98%, etc.) and client quotes are illustrative placeholders. Replace with real, verifiable numbers and approved client reviews. *(Check California Rules of Professional Conduct 7.1–7.5 on testimonials, result claims, and firm names.)*
 5. **Contact form:** Emails leads through [Resend](https://resend.com). It won't send anything until you set the environment variables below.
 6. **California legal content:** the wrongful death and practice areas pages cite California deadlines and rules (CCP §377.60, §335.1, §340.5; Gov. Code §911.2; MICRA; comparative fault; workers' comp exclusivity). Have a California attorney confirm them before launch and whenever the law changes.
-7. **Legal pages & social links:** Have the firm's counsel review `app/privacy/page.tsx`, `app/disclaimer/page.tsx`, and the footer disclaimer. The privacy policy describes the site as it is today (no analytics or ad cookies) — update it when adding analytics, chat, call tracking or ad pixels. Add social profile URLs to `SOCIAL` in `lib/site.ts`; icons appear in the footer only once a URL is set.
+7. **Legal pages & social links:** Have the firm's counsel review `app/(site)/privacy/page.tsx`, `app/(site)/disclaimer/page.tsx`, and the footer disclaimer. The privacy policy describes the site as it is today (no analytics or ad cookies) — update it when adding analytics, chat, call tracking or ad pixels. Add social profile URLs to `SOCIAL` in `lib/site.ts`; icons appear in the footer only once a URL is set.
 
 ## Run locally
 Requires Node 20.9+ (also set Node.js 20+ in Vercel → Project → Settings).

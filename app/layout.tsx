@@ -1,11 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import Reveal from "@/components/Reveal";
-import A11yMenu from "@/components/A11yMenu";
-import JsonLd from "@/components/JsonLd";
-import { firmSchema } from "@/lib/schema";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -34,15 +28,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={inter.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
-        <JsonLd data={firmSchema()} />
       </head>
-      <body>
-        <Header />
-        {children}
-        <Footer />
-        <Reveal />
-        <A11yMenu />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

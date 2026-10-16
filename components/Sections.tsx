@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
-import { OFFICES, PHONE, PHONE_HREF } from "@/lib/site";
+import { getContent } from "@/lib/content-store";
 
 // Interior-page header with a visible breadcrumb and matching BreadcrumbList structured data.
 // `trail` lists the pages after Home, ending with the current page: [["Wrongful Death", "/wrongful-death"], ...].
@@ -26,7 +26,8 @@ export function PageHero({ trail, title, children }: { trail: [string, string][]
   );
 }
 
-export function CtaBand({ eyebrow, title, text, cta, ctaHref = "/contact" }: { eyebrow: string; title: string; text: string; cta: string; ctaHref?: string }) {
+export async function CtaBand({ eyebrow, title, text, cta, ctaHref = "/contact" }: { eyebrow: string; title: string; text: string; cta: string; ctaHref?: string }) {
+  const { firm } = await getContent();
   return (
     <section className="section ctaband">
       <div className="container reveal">
@@ -35,7 +36,7 @@ export function CtaBand({ eyebrow, title, text, cta, ctaHref = "/contact" }: { e
         <p>{text}</p>
         <div className="actions">
           <a className="btn btn--gold" href={ctaHref}>{cta}</a>
-          <a className="btn btn--ghost" href={PHONE_HREF}>&#9742; {PHONE}</a>
+          <a className="btn btn--ghost" href={firm.phoneHref}>&#9742; {firm.phone}</a>
         </div>
       </div>
     </section>
@@ -49,7 +50,8 @@ const PhoneIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" /></svg>
 );
 
-export function Locations({ tight = false }: { tight?: boolean }) {
+export async function Locations({ tight = false }: { tight?: boolean }) {
+  const { firm } = await getContent();
   return (
     <section className={`section bg-paper2${tight ? " section--tight" : ""}`}>
       <div className="container">
@@ -59,7 +61,7 @@ export function Locations({ tight = false }: { tight?: boolean }) {
           <p className="lead" style={{ margin: "14px auto 0" }}>From San Diego to Sacramento - and if you can&rsquo;t come to us, we make home and hospital visits anywhere in California.</p>
         </div>
         <div className="locations">
-          {OFFICES.map((o) => (
+          {firm.offices.map((o) => (
             <div className="loc reveal" key={o.label}>
               <div className="loc__media">
                 <Image src={o.img} alt="" width={800} height={500} sizes="(max-width: 620px) 100vw, (max-width: 920px) 50vw, 360px" />

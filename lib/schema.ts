@@ -1,7 +1,9 @@
-// Structured data (schema.org JSON-LD), built from lib/site.ts.
-import { barProfileUrl, getAttorney } from "@/content/attorneys";
+// Structured data (schema.org JSON-LD), built from lib/site.ts and the page content (lib/content-store.ts).
+import { barProfileUrl } from "@/content/groups";
 import type { ArticleContent, Attorney, LocationContent, ServiceContent } from "@/content/types";
-import { EMAIL, OFFICES, PHONE_E164, SERVICES, SITE_DESCRIPTION, SITE_NAME, SITE_URL, SOCIAL, absUrl, type Office } from "@/lib/site";
+import { parseJsonLd, type Seo } from "@/lib/admin/page-model";
+import type { Content } from "@/lib/content-store";
+import { SITE_NAME, SITE_URL, absUrl, type Office } from "@/lib/firm";
 
 const FIRM_ID = `${SITE_URL}/#firm`;
 const SITE_ID = `${SITE_URL}/#website`;
@@ -18,8 +20,9 @@ function address(o: Office) {
 }
 
 // Site-wide graph: the firm, each office as a department, and the website.
-export function firmSchema() {
-  const sameAs = SOCIAL.map((s) => s.url).filter(Boolean);
+export function firmSchema(c: Content) {
+  const { firm } = c;
+  const sameAs = firm.social.map((s) => s.url).filter(Boolean);
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -27,16 +30,16 @@ export function firmSchema() {
         "@type": "LegalService",
         "@id": FIRM_ID,
         name: SITE_NAME,
-        description: SITE_DESCRIPTION,
+        description: firm.description,
         ...(SITE_URL && { url: SITE_URL, logo: `${SITE_URL}/assets/logo-header.webp`, image: `${SITE_URL}/opengraph-image` }),
-        telephone: PHONE_E164,
-        email: EMAIL,
-        address: address(OFFICES[0]),
+        telephone: firm.phoneSchema,
+        email: firm.email,
+        address: address(firm.offices[0]),
         areaServed: { "@type": "State", name: "California" },
-        knowsAbout: SERVICES,
+        knowsAbout: c.knowsAbout,
         openingHours: "Mo-Su 00:00-23:59",
         ...(sameAs.length && { sameAs }),
-        department: OFFICES.map((o) => ({
+        department: firm.offices.map((o) => ({
           "@type": "LegalService",
           "@id": `${SITE_URL}/#office-${o.id}`,
           name: `${SITE_NAME} - ${o.label}`,
@@ -93,15 +96,15 @@ export function attorneySchema(a: Attorney) {
     sameAs: [barProfileUrl(a.barNumber)],
   };
 }
-const reviewer = (slug?: string, date?: string) => {
-  const a = getAttorney(slug);
+const reviewer = (c: Content, slug?: string, date?: string) => {
+  const a = c.attorney(slug);
   return a ? { reviewedBy: { "@type": "Person", "@id": personId(a), name: a.name }, ...(date && { lastReviewed: date }) } : {};
 };
 
 const strip = (text: string) => text.replace(/\*\*(.+?)\*\*|\[(.+?)\]\((.+?)\)/g, (_, b, t) => b ?? t);
 
 // Practice-area page: the service (provided by the firm), its FAQ, and the page itself.
-export function servicePageSchema(s: ServiceContent) {
+export function servicePageSchema(s: ServiceContent, c: Content) {
   const url = absUrl(s.slug);
   return {
     "@context": "https://schema.org",
@@ -114,7 +117,7 @@ export function servicePageSchema(s: ServiceContent) {
         description: s.description,
         provider: { "@id": s.location ? `${SITE_URL}/#office-${s.location}` : FIRM_ID },
         areaServed: s.location
-          ? { "@type": "AdministrativeArea", name: OFFICES.find((o) => o.id === s.location)?.label ?? "California" }
+          ? { "@type": "AdministrativeArea", name: c.firm.offices.find((o) => o.id === s.location)?.label ?? "California" }
           : { "@type": "State", name: "California" },
       },
       {
@@ -123,7 +126,7 @@ export function servicePageSchema(s: ServiceContent) {
         name: s.title,
         description: s.description,
         dateModified: s.updated,
-        ...reviewer(s.reviewedBy, s.reviewed),
+        ...reviewer(c, s.reviewedBy, s.reviewed),
         isPartOf: { "@id": SITE_ID },
         inLanguage: "en-US",
       },
@@ -136,8 +139,8 @@ export function servicePageSchema(s: ServiceContent) {
 }
 
 // Office page: the office as a LegalService (same @id as in the firm graph), its FAQ, and the page.
-export function locationPageSchema(l: LocationContent) {
-  const office = OFFICES.find((o) => o.id === l.officeId);
+export function locationPageSchema(l: LocationContent, c: Content) {
+  const office = c.firm.offices.find((o) => o.id === l.officeId);
   const url = absUrl(l.slug);
   return {
     "@context": "https://schema.org",
@@ -150,7 +153,7 @@ export function locationPageSchema(l: LocationContent) {
         ...(url && { url }),
         ...(office && { telephone: office.tel, address: address(office) }),
         areaServed: l.areasServed.map((name) => ({ "@type": "City", name })),
-        knowsAbout: SERVICES,
+        knowsAbout: c.knowsAbout,
         parentOrganization: { "@id": FIRM_ID },
       },
       {
@@ -159,7 +162,7 @@ export function locationPageSchema(l: LocationContent) {
         name: l.title,
         description: l.description,
         dateModified: l.updated,
-        ...reviewer(l.reviewedBy, l.reviewed),
+        ...reviewer(c, l.reviewedBy, l.reviewed),
         isPartOf: { "@id": SITE_ID },
         about: { "@id": `${SITE_URL}/#office-${l.officeId}` },
         inLanguage: "en-US",
@@ -173,9 +176,9 @@ export function locationPageSchema(l: LocationContent) {
 }
 
 // Guide page: an Article published by the firm (author = the reviewing attorney once there is one).
-export function articleSchema(a: ArticleContent) {
+export function articleSchema(a: ArticleContent, c: Content) {
   const url = absUrl(a.slug);
-  const attorney = getAttorney(a.reviewedBy);
+  const attorney = c.attorney(a.reviewedBy);
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -192,7 +195,7 @@ export function articleSchema(a: ArticleContent) {
         ...(SITE_URL && { image: `${SITE_URL}/opengraph-image` }),
         inLanguage: "en-US",
         isPartOf: { "@id": SITE_ID },
-        ...reviewer(a.reviewedBy, a.reviewed),
+        ...reviewer(c, a.reviewedBy, a.reviewed),
       },
       {
         "@type": "FAQPage",
@@ -200,4 +203,17 @@ export function articleSchema(a: ArticleContent) {
       },
     ],
   };
+}
+
+// Per-page structured-data settings from the admin panel.
+type Graph = { "@context": string; "@graph": { "@type": string }[] };
+/** Leaves out the FAQPage node when the page's SEO settings turn the FAQ schema off. */
+export function applySchemaSettings<T extends Graph>(schema: T, seo: Seo): T {
+  return seo.faqSchema === false ? { ...schema, "@graph": schema["@graph"].filter((n) => n["@type"] !== "FAQPage") } : schema;
+}
+/** The page's custom JSON-LD, parsed (never output as raw text), or null. */
+export function customJsonLd(seo: Seo) {
+  if (!seo.jsonLd) return null;
+  const r = parseJsonLd(seo.jsonLd);
+  return r.ok ? { "@context": "https://schema.org", ...r.value } : null;
 }
